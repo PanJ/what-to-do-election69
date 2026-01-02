@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 interface UserAnswers {
   votingProvince: string | null;
   feb8Location: "same" | "other" | null;
@@ -19,6 +21,96 @@ interface VotingResult {
   registrationType: "early" | "outside" | null;
   location: string | null;
   icon: string;
+}
+
+interface TimeRemaining {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  expired: boolean;
+}
+
+function useCountdown(targetDate: Date): TimeRemaining {
+  const calculateTimeRemaining = (): TimeRemaining => {
+    const now = new Date();
+    const difference = targetDate.getTime() - now.getTime();
+
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+      expired: false,
+    };
+  };
+
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(
+    calculateTimeRemaining
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return timeRemaining;
+}
+
+// January 5, 2026 23:59:59 Thai time (UTC+7)
+// In UTC: January 5, 2026 16:59:59
+const REGISTRATION_DEADLINE = new Date("2026-01-05T23:59:59+07:00");
+
+function CountdownDisplay({ timeRemaining }: { timeRemaining: TimeRemaining }) {
+  if (timeRemaining.expired) {
+    return (
+      <div className="flex items-center gap-2 text-red-400 text-base mt-2">
+        <span className="material-icons text-sm">timer_off</span>
+        <span>หมดเวลาลงทะเบียนแล้ว</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 flex items-center gap-2">
+      <span className="material-icons text-election-secondary text-lg">
+        timer
+      </span>
+      <div className="flex gap-2 text-sm">
+        <div className="bg-election-dark/60 px-2 py-1 rounded-lg text-center min-w-[50px]">
+          <span className="text-white font-mono font-bold text-lg">
+            {timeRemaining.days}
+          </span>
+          <span className="text-white/60 text-xs ml-1">วัน</span>
+        </div>
+        <div className="bg-election-dark/60 px-2 py-1 rounded-lg text-center min-w-[50px]">
+          <span className="text-white font-mono font-bold text-lg">
+            {String(timeRemaining.hours).padStart(2, "0")}
+          </span>
+          <span className="text-white/60 text-xs ml-1">ชม.</span>
+        </div>
+        <div className="bg-election-dark/60 px-2 py-1 rounded-lg text-center min-w-[50px]">
+          <span className="text-white font-mono font-bold text-lg">
+            {String(timeRemaining.minutes).padStart(2, "0")}
+          </span>
+          <span className="text-white/60 text-xs ml-1">นาที</span>
+        </div>
+        <div className="bg-election-dark/60 px-2 py-1 rounded-lg text-center min-w-[50px]">
+          <span className="text-white font-mono font-bold text-lg">
+            {String(timeRemaining.seconds).padStart(2, "0")}
+          </span>
+          <span className="text-white/60 text-xs ml-1">วินาที</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function ResultsDisplay({
@@ -89,6 +181,8 @@ export default function ResultsDisplay({
   const needsReferendumRegistration = results.some(
     (r) => r.type === "referendum" && r.needsRegistration
   );
+
+  const timeRemaining = useCountdown(REGISTRATION_DEADLINE);
 
   return (
     <div className="animate-slide-up">
@@ -168,14 +262,15 @@ export default function ResultsDisplay({
             <span className="material-icons">edit_note</span>
             ลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขต
           </h3>
-          <p className="text-white/80 text-base mb-4">
+          <p className="text-white/80 text-base mb-2">
             ลงทะเบียนได้ถึงวันที่ 5 มกราคม 2569
           </p>
+          <CountdownDisplay timeRemaining={timeRemaining} />
           <a
             href="https://boraservices.bora.dopa.go.th/election/outvote/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-election-secondary text-election-dark px-5 py-3 rounded-xl font-medium hover:bg-election-secondary/90 transition-colors text-lg"
+            className="inline-flex items-center gap-2 bg-election-secondary text-election-dark px-5 py-3 rounded-xl font-medium hover:bg-election-secondary/90 transition-colors text-lg mt-4"
           >
             <span className="material-icons">open_in_new</span>
             ลงทะเบียนที่นี่
@@ -191,13 +286,14 @@ export default function ResultsDisplay({
             <span className="material-icons">edit_note</span>
             ลงทะเบียนประชามตินอกเขต
           </h3>
-          <p className="text-white/80 text-base mb-4">
+          <p className="text-white/80 text-base mb-2">
             ลงทะเบียนได้ตั้งแต่วันเสาร์ที่ 3 มกราคม 2569 จนถึงวันจันทร์ที่ 5
             มกราคม 2569
           </p>
+          <CountdownDisplay timeRemaining={timeRemaining} />
           <button
             disabled
-            className="inline-flex items-center gap-2 bg-white/20 text-white/60 px-5 py-3 rounded-xl font-medium cursor-not-allowed text-lg"
+            className="inline-flex items-center gap-2 bg-white/20 text-white/60 px-5 py-3 rounded-xl font-medium cursor-not-allowed text-lg mt-4"
           >
             <span className="material-icons">hourglass_empty</span>
             อยู่ระหว่างการรอช่องทางการลงทะเบียน
