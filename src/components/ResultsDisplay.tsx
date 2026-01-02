@@ -301,14 +301,14 @@ export default function ResultsDisplay({
       )}
 
       {/* Registration links */}
-      {needsElectionRegistration && (
+      {(needsElectionRegistration || needsReferendumRegistration) && (
         <div
           className="mt-6 p-3 md:p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
           style={{ animationDelay: "0.3s" }}
         >
           <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2 font-heading">
             <span className="material-icons">edit_note</span>
-            ลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขต
+            ลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขต และลงทะเบียนประชามตินอกเขต
           </h3>
           <p className="text-white/80 text-base mb-2">
             ลงทะเบียนได้ถึงวันที่ 5 มกราคม 2569
@@ -323,29 +323,6 @@ export default function ResultsDisplay({
             <span className="material-icons">open_in_new</span>
             ลงทะเบียนที่นี่
           </a>
-        </div>
-      )}
-      {needsReferendumRegistration && (
-        <div
-          className="mt-6 p-3 md:p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
-          style={{ animationDelay: "0.3s" }}
-        >
-          <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2 font-heading">
-            <span className="material-icons">edit_note</span>
-            ลงทะเบียนประชามตินอกเขต
-          </h3>
-          <p className="text-white/80 text-base mb-2">
-            ลงทะเบียนได้ตั้งแต่วันเสาร์ที่ 3 มกราคม 2569 จนถึงวันจันทร์ที่ 5
-            มกราคม 2569
-          </p>
-          <CountdownDisplay timeRemaining={timeRemaining} />
-          <button
-            disabled
-            className="inline-flex items-center gap-2 bg-white/20 text-white/60 px-5 py-3 rounded-xl font-medium cursor-not-allowed text-lg mt-4"
-          >
-            <span className="material-icons">hourglass_empty</span>
-            อยู่ระหว่างการรอช่องทางการลงทะเบียน
-          </button>
         </div>
       )}
 
