@@ -355,19 +355,24 @@ function App() {
 
         {/* Footer */}
         <footer className="text-center py-4 text-white/50 text-sm">
-          Made with{" "}
-          <span className="material-icons text-red-400 text-sm align-middle">
-            favorite
-          </span>{" "}
-          by{" "}
-          <a
-            href="https://x.com/PanJ"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-election-secondary/70 hover:text-election-secondary transition-colors"
-          >
-            @PanJ
-          </a>
+          <p>
+            Made with{" "}
+            <span className="material-icons text-red-400 text-sm align-middle">
+              favorite
+            </span>{" "}
+            by{" "}
+            <a
+              href="https://x.com/PanJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-election-secondary/70 hover:text-election-secondary transition-colors"
+            >
+              @PanJ
+            </a>
+          </p>
+          <p>
+            ระบบนี้<strong>ไม่เก็บ</strong>บันทึกข้อมูลการใช้งานของคุณ
+          </p>
         </footer>
       </div>
     </div>
