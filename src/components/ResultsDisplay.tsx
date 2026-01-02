@@ -84,7 +84,7 @@ function CountdownDisplay({ timeRemaining }: { timeRemaining: TimeRemaining }) {
       <span className="material-icons text-election-secondary text-lg">
         timer
       </span>
-      <div className="flex gap-2 text-sm">
+      <div className="flex gap-2 text-sm flex-wrap">
         <div className="bg-election-dark/60 px-2 py-1 rounded-lg text-center min-w-[50px]">
           <span className="text-white font-mono font-bold text-lg">
             {timeRemaining.days}
