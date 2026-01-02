@@ -113,7 +113,7 @@ function App() {
 
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
-        <header className="text-center py-8 px-4">
+        <header className="text-center py-4 px-2">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3 animate-fade-in font-heading flex items-center justify-center gap-3">
             <span className="material-icons text-4xl md:text-5xl">
               how_to_vote
@@ -129,7 +129,7 @@ function App() {
         </header>
 
         {/* Main content */}
-        <main className="flex-1 flex items-start justify-center px-4 pb-8">
+        <main className="flex-1 flex items-start justify-center px-2 pb-8">
           <div className="w-full max-w-2xl">
             {/* Progress indicator */}
             {step !== "results" && (
@@ -166,7 +166,7 @@ function App() {
             )}
 
             {/* Step content */}
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-2xl border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-3 md:p-6 shadow-2xl border border-white/20">
               {step === "voting-province" && (
                 <div>
                   <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 font-heading">
@@ -232,7 +232,7 @@ function App() {
                   >
                     <button
                       onClick={() => handleFeb8LocationSelect("same")}
-                      className="w-full p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
+                      className="w-full p-3 md:p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
                     >
                       <span className="text-xl flex items-center gap-2">
                         <span className="material-icons">location_on</span>
@@ -296,7 +296,7 @@ function App() {
                     <div className="space-y-4">
                       <button
                         onClick={() => handleFeb1LocationSelect("same-voting")}
-                        className="w-full p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
+                        className="w-full p-3 md:p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
                       >
                         <span className="text-xl flex items-center gap-2">
                           <span className="material-icons">location_on</span>
@@ -309,7 +309,7 @@ function App() {
 
                       <button
                         onClick={() => handleFeb1LocationSelect("same-feb8")}
-                        className="w-full p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
+                        className="w-full p-3 md:p-5 rounded-xl bg-white/10 hover:bg-election-secondary/30 border border-white/20 hover:border-election-secondary text-white text-left transition-all duration-300"
                       >
                         <span className="text-xl flex items-center gap-2">
                           <span className="material-icons">location_on</span>

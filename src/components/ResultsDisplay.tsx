@@ -204,7 +204,7 @@ export default function ResultsDisplay({
       </p>
 
       {/* Summary box */}
-      <div className="bg-election-dark/50 rounded-2xl p-5 mb-6 border border-election-secondary/30">
+      <div className="bg-election-dark/50 rounded-2xl p-3 md:p-5 mb-6 border border-election-secondary/30">
         <div className="text-white/70 text-base mb-2">
           จังหวัดที่มีสิทธิเลือกตั้ง
         </div>
@@ -218,7 +218,7 @@ export default function ResultsDisplay({
         {results.map((result, index) => (
           <div
             key={result.type}
-            className="bg-white/5 rounded-2xl p-5 border border-white/10 animate-slide-up"
+            className="bg-white/5 rounded-2xl p-3 md:p-5 border border-white/10 animate-slide-up"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flex items-start gap-4">
@@ -279,7 +279,7 @@ export default function ResultsDisplay({
       {/* Warning for voting both on Feb 8 */}
       {feb8Location === "same" && (
         <div
-          className="mt-6 p-5 bg-amber-500/20 rounded-2xl border border-amber-500/40 animate-slide-up"
+          className="mt-6 p-3 md:p-5 bg-amber-500/20 rounded-2xl border border-amber-500/40 animate-slide-up"
           style={{ animationDelay: "0.25s" }}
         >
           <div className="flex items-start gap-3">
@@ -300,7 +300,7 @@ export default function ResultsDisplay({
       {/* Registration links */}
       {needsElectionRegistration && (
         <div
-          className="mt-6 p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
+          className="mt-6 p-3 md:p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
           style={{ animationDelay: "0.3s" }}
         >
           <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2 font-heading">
@@ -324,7 +324,7 @@ export default function ResultsDisplay({
       )}
       {needsReferendumRegistration && (
         <div
-          className="mt-6 p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
+          className="mt-6 p-3 md:p-5 bg-election-secondary/20 rounded-2xl border border-election-secondary/30 animate-slide-up"
           style={{ animationDelay: "0.3s" }}
         >
           <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2 font-heading">
@@ -348,7 +348,7 @@ export default function ResultsDisplay({
 
       {/* Important dates */}
       <div
-        className="mt-6 p-5 bg-white/5 rounded-2xl border border-white/10 animate-slide-up"
+        className="mt-6 p-3 md:p-5 bg-white/5 rounded-2xl border border-white/10 animate-slide-up"
         style={{ animationDelay: "0.4s" }}
       >
         <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2 font-heading">
@@ -361,19 +361,19 @@ export default function ResultsDisplay({
               วันสุดท้ายของการลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขต
               และการลงทะเบียนประชามตินอกเขต
             </span>
-            <span className="text-election-secondary font-medium w-[150px]">
+            <span className="text-election-secondary font-medium w-[110px]">
               5 ม.ค. 2569
             </span>
           </div>
           <div className="flex justify-between items-center p-3 rounded-lg hover:bg-white/5 gap-1">
             <span className="flex-1">วันเลือกตั้งล่วงหน้า/นอกเขต</span>
-            <span className="text-election-secondary font-medium w-[150px]">
+            <span className="text-election-secondary font-medium w-[110px]">
               1 ก.พ. 2569
             </span>
           </div>
           <div className="flex justify-between items-center p-3 rounded-lg hover:bg-white/5 gap-1">
             <span className="flex-1">วันเลือกตั้งทั่วไป & ประชามติ</span>
-            <span className="text-election-secondary font-medium w-[150px]">
+            <span className="text-election-secondary font-medium w-[110px]">
               8 ก.พ. 2569
             </span>
           </div>
