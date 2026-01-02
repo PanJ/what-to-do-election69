@@ -221,14 +221,17 @@ export default function ResultsDisplay({
             className="bg-white/5 rounded-2xl p-3 md:p-5 border border-white/10 animate-slide-up"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <div className="flex items-start gap-4">
-              <div className="text-election-secondary">
-                <span className="material-icons text-5xl">{result.icon}</span>
-              </div>
-              <div className="flex-1">
+            <div className="flex flex-col items-start gap-4">
+              <div className="flex items-center gap-2">
+                <div className="text-election-secondary">
+                  <span className="material-icons text-5xl">{result.icon}</span>
+                </div>
                 <h3 className="text-xl font-semibold text-white mb-2 font-heading">
                   {result.title}
                 </h3>
+              </div>
+
+              <div className="flex-1">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-election-secondary text-lg">
                     <span className="material-icons">event</span>
