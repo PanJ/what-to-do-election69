@@ -252,6 +252,27 @@ export default function ResultsDisplay({
         ))}
       </div>
 
+      {/* Warning for voting both on Feb 8 */}
+      {feb8Location === "same" && (
+        <div
+          className="mt-6 p-5 bg-amber-500/20 rounded-2xl border border-amber-500/40 animate-slide-up"
+          style={{ animationDelay: "0.25s" }}
+        >
+          <div className="flex items-start gap-3">
+            <span className="material-icons text-amber-400 text-3xl">info</span>
+            <div>
+              <h3 className="text-lg font-semibold text-amber-300 mb-2 font-heading">
+                โปรดระวัง!
+              </h3>
+              <p className="text-white/90 text-base">
+                คุณต้องเข้าคูหาสองรอบ เพื่อที่จะทำการลงคะแนนเสียงเลือกตั้ง
+                และการลงคะแนนเสียงประชามติ
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Registration links */}
       {needsElectionRegistration && (
         <div

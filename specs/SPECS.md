@@ -35,3 +35,9 @@
 # Rev 3
 
 - Add typing effect to the questions, after the question is fully shown, the other elements should fade in
+
+---
+
+Rev 4
+
+- For the user that vote both election and referendum in 8 Feb, displays a warning message, "โปรดระวัง! คุณต้องเข้าคูหาสองรอบ เพื่อที่จะทำการลงคะแนนเสียงเลือกตั้ง และการลงคะแนนเสียงประชามติ"
