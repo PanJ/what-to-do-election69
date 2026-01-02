@@ -41,3 +41,12 @@
 Rev 4
 
 - For the user that vote both election and referendum in 8 Feb, displays a warning message, "โปรดระวัง! คุณต้องเข้าคูหาสองรอบ เพื่อที่จะทำการลงคะแนนเสียงเลือกตั้ง และการลงคะแนนเสียงประชามติ"
+
+---
+
+Rev 5
+
+- Added provincesWithSingleArea to the data/provinces.ts
+- If the user has to vote on 1 Feb at the same province as the voting province,
+  - If the provice is in provincesWithSingleArea, do not display the province in the result and displays a warning message "คุณไม่สามารถเลือกตั้งล่วงหน้าในเขตที่คุณมีสิทธิได้ และเนื่องจากจังหวัด{province} มีเขตเลือกตั้งเดียวคุณต้องลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขตที่จังหวัดข้างเคียง "
+  - else displays a warning message "คุณไม่สามารถเลือกตั้งล่วงหน้าในเขตที่คุณมีสิทธิได้ คุณต้องลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขตที่จังหวัด{province} โดยต้องเลือกเขตเลือกตั้งที่ไม่ใช่เขตที่คุณมีสิทธิอยู่"

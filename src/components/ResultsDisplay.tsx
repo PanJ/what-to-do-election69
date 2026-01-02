@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { provincesWithSingleArea } from "../data/provinces";
 
 interface UserAnswers {
   votingProvince: string | null;
@@ -119,6 +120,12 @@ export default function ResultsDisplay({
 }: ResultsDisplayProps) {
   const { votingProvince, feb8Location, feb8Province, feb1Province } = answers;
 
+  // Check if user votes on Feb 1 at the same province as voting province
+  const votesAtSameProvinceOnFeb1 =
+    feb8Location !== "same" && feb1Province === votingProvince;
+  const isSingleAreaProvince =
+    votingProvince && provincesWithSingleArea.includes(votingProvince);
+
   // Calculate results
   const results: VotingResult[] = [];
 
@@ -137,7 +144,9 @@ export default function ResultsDisplay({
   } else {
     // User is NOT in their voting province on Feb 8
     // They need to vote early/outside on Feb 1
-    const electionLocation = feb1Province;
+    // If voting at same province and it's single area, don't show location
+    const electionLocation =
+      votesAtSameProvinceOnFeb1 && isSingleAreaProvince ? null : feb1Province;
 
     results.push({
       type: "election",
@@ -225,10 +234,12 @@ export default function ResultsDisplay({
                     <span className="material-icons">event</span>
                     <span className="font-medium">{result.date}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-white/90 text-lg">
-                    <span className="material-icons">location_on</span>
-                    <span>{result.location}</span>
-                  </div>
+                  {result.location && (
+                    <div className="flex items-center gap-2 text-white/90 text-lg">
+                      <span className="material-icons">location_on</span>
+                      <span>{result.location}</span>
+                    </div>
+                  )}
                   {result.needsRegistration && (
                     <div className="mt-3 p-4 bg-election-accent/80 rounded-xl border border-election-accent/30">
                       <div className="flex items-center gap-2 text-white font-medium text-lg">
@@ -241,6 +252,19 @@ export default function ResultsDisplay({
                           {result.registrationType === "outside"
                             ? "นอกเขต"
                             : "ล่วงหน้า/นอกเขต"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  {/* Warning for voting at same province on Feb 1 */}
+                  {result.type === "election" && votesAtSameProvinceOnFeb1 && (
+                    <div className="mt-3 p-4 bg-amber-500/20 rounded-xl border border-amber-500/40">
+                      <div className="flex items-start gap-2 text-amber-300">
+                        <span className="material-icons mt-0.5">info</span>
+                        <span className="text-base">
+                          {isSingleAreaProvince
+                            ? `โดยทั่วไปแล้ว คุณจะไม่สามารถเลือกตั้งล่วงหน้าในเขตที่คุณมีสิทธิได้ และเนื่องจากจังหวัด${votingProvince}มีเขตเลือกตั้งเดียว คุณต้องลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขตที่จังหวัดข้างเคียง`
+                            : `โดยทั่วไปแล้ว คุณจะไม่สามารถเลือกตั้งล่วงหน้าในเขตที่คุณมีสิทธิได้ คุณต้องลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขตที่จังหวัด${votingProvince} โดยต้องเลือกเขตเลือกตั้งที่ไม่ใช่เขตที่คุณมีสิทธิอยู่`}
                         </span>
                       </div>
                     </div>

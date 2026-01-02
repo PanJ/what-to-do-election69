@@ -75,8 +75,14 @@ export const provinces = [
   "อุดรธานี",
   "อุตรดิตถ์",
   "อุทัยธานี",
-  "อุบลราชธานี"
+  "อุบลราชธานี",
 ] as const;
 
-export type Province = typeof provinces[number];
+export const provincesWithSingleArea = [
+  "ตราด",
+  "ระนอง",
+  "สมุทรสงคราม",
+  "สิงห์บุรี",
+];
 
+export type Province = (typeof provinces)[number];
