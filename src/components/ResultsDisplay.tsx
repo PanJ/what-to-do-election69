@@ -272,6 +272,20 @@ export default function ResultsDisplay({
                       </div>
                     </div>
                   )}
+                  {result.type === "referendum" && result.needsRegistration && (
+                    <div className="mt-3 p-4 bg-amber-500/20 rounded-xl border border-amber-500/40">
+                      <div className="flex items-start gap-2 text-amber-300">
+                        <span className="material-icons mt-0.5">info</span>
+                        <span className="text-base">
+                          การลงทะเบียนประชามตินอกเขต
+                          จะทำแยกกันกับการลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขต
+                          หากคุณได้ทำการลงทะเบียนเลือกตั้งล่วงหน้า/นอกเขตก่อนวันที่
+                          3 ธันวาคม 2569
+                          คุณต้องลงทะเบียนประชามตินอกเขตอีกครั้งหนึ่ง
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
